@@ -13,7 +13,7 @@ type Model struct {
 	Fax     string
 	Web     string
 	Age     int
-	Right   bool
+	Rights  bool
 	Counter int64
 }
 
@@ -24,7 +24,7 @@ func NewModel() *Model {
 	m.Fax = "99909990"
 	m.Web = "http://beego.me"
 	m.Age = 100
-	m.Right = true
+	m.Rights = true
 	m.Counter = 1000
 
 	return m
@@ -60,7 +60,7 @@ func initDB() {
 			"`fax` varchar(255) NOT NULL," +
 			"`web` varchar(255) NOT NULL," +
 			"`age` int(11) NOT NULL," +
-			"`right` tinyint(1) NOT NULL," +
+			"`rights` tinyint(1) NOT NULL," +
 			"`counter` bigint(20) NOT NULL," +
 			"PRIMARY KEY (`id`)" +
 			") ENGINE=`INNODB` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci",

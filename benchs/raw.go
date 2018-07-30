@@ -9,12 +9,12 @@ import (
 var raw *sql.DB
 
 const (
-	rawInsertBaseSQL   = "INSERT INTO `model` (`name`, `title`, `fax`, `web`, `age`, `right`, `counter`) VALUES "
+	rawInsertBaseSQL   = "INSERT INTO `model` (`name`, `title`, `fax`, `web`, `age`, `rights`, `counter`) VALUES "
 	rawInsertValuesSQL = "(?, ?, ?, ?, ?, ?, ?)"
 	rawInsertSQL       = rawInsertBaseSQL + rawInsertValuesSQL
-	rawUpdateSQL       = "UPDATE `model` SET `name`=?, `title`=?, `fax`=?, `web`=?, `age`=?, `right`=?, `counter`=? WHERE `id`=?"
-	rawSelectSQL       = "SELECT `id`, `name`, `title`, `fax`, `web`, `age`, `right`, `counter` FROM `model` WHERE `id`=?"
-	rawSelectMultiSQL  = "SELECT `id`, `name`, `title`, `fax`, `web`, `age`, `right`, `counter` FROM `model` WHERE `id`>0 LIMIT 100"
+	rawUpdateSQL       = "UPDATE `model` SET `name`=?, `title`=?, `fax`=?, `web`=?, `age`=?, `rights`=?, `counter`=? WHERE `id`=?"
+	rawSelectSQL       = "SELECT `id`, `name`, `title`, `fax`, `web`, `age`, `rights`, `counter` FROM `model` WHERE `id`=?"
+	rawSelectMultiSQL  = "SELECT `id`, `name`, `title`, `fax`, `web`, `age`, `rights`, `counter` FROM `model` WHERE `id`>0 LIMIT 100"
 )
 
 func init() {
@@ -46,7 +46,7 @@ func RawInsert(b *B) {
 	defer stmt.Close()
 
 	for i := 0; i < b.N; i++ {
-		res, err := stmt.Exec(m.Name, m.Title, m.Fax, m.Web, m.Age, m.Right, m.Counter)
+		res, err := stmt.Exec(m.Name, m.Title, m.Fax, m.Web, m.Age, m.Rights, m.Counter)
 		if err != nil {
 			fmt.Println(err)
 			b.FailNow()
@@ -61,7 +61,7 @@ func RawInsert(b *B) {
 }
 
 func rawInsert(m *Model) error {
-	res, err := raw.Exec(rawInsertSQL, m.Name, m.Title, m.Fax, m.Web, m.Age, m.Right, m.Counter)
+	res, err := raw.Exec(rawInsertSQL, m.Name, m.Title, m.Fax, m.Web, m.Age, m.Rights, m.Counter)
 	if err != nil {
 		return err
 	}
@@ -92,7 +92,7 @@ func RawInsertMulti(b *B) {
 			args[offset+2] = ms[j].Fax
 			args[offset+3] = ms[j].Web
 			args[offset+4] = ms[j].Age
-			args[offset+5] = ms[j].Right
+			args[offset+5] = ms[j].Rights
 			args[offset+6] = ms[j].Counter
 		}
 		res, err := raw.Exec(query, args...)
@@ -125,7 +125,7 @@ func RawUpdate(b *B) {
 	defer stmt.Close()
 
 	for i := 0; i < b.N; i++ {
-		_, err := stmt.Exec(m.Name, m.Title, m.Fax, m.Web, m.Age, m.Right, m.Counter, m.Id)
+		_, err := stmt.Exec(m.Name, m.Title, m.Fax, m.Web, m.Age, m.Rights, m.Counter, m.Id)
 		if err != nil {
 			fmt.Println(err)
 			b.FailNow()
@@ -158,7 +158,7 @@ func RawRead(b *B) {
 			&mout.Fax,
 			&mout.Web,
 			&mout.Age,
-			&mout.Right,
+			&mout.Rights,
 			&mout.Counter,
 		)
 		if err != nil {
@@ -206,7 +206,7 @@ func RawReadSlice(b *B) {
 				&models[j].Fax,
 				&models[j].Web,
 				&models[j].Age,
-				&models[j].Right,
+				&models[j].Rights,
 				&models[j].Counter,
 			)
 			if err != nil {

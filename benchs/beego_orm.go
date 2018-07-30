@@ -21,6 +21,7 @@ func init() {
 		orm.RegisterModel(new(Model))
 
 		bo = orm.NewOrm()
+		bo.Using("default")
 	}
 }
 
