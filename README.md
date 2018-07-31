@@ -40,104 +40,42 @@ orm-benchmark -multi=20 -orm=all
 
 ```
 40000 times - Insert
-       orm:    11.63s       290706 ns/op    1515 B/op     35 allocs/op
-       qbs:    12.92s       322982 ns/op    5846 B/op    111 allocs/op
-      xorm:    13.21s       330361 ns/op    2176 B/op     53 allocs/op
-      hood:    14.26s       356591 ns/op   14592 B/op    293 allocs/op
+       raw:     7.71s       192768 ns/op     552 B/op     12 allocs/op
+      hood:    11.78s       294520 ns/op   13039 B/op    316 allocs/op
+       orm:    12.13s       303365 ns/op    1937 B/op     40 allocs/op
+    gendry:    12.54s       313596 ns/op    1953 B/op     36 allocs/op
+      gorm:    16.48s       411881 ns/op    6142 B/op    124 allocs/op
 
  10000 times - MultiInsert 100 row
-       orm:    22.17s      2217284 ns/op   85061 B/op    854 allocs/op
-      xorm:    30.17s      3016717 ns/op  112572 B/op   1877 allocs/op
-      hood:     Not support multi insert
-       qbs:     Not support multi insert
-
- 40000 times - Update
-       orm:    12.77s       319335 ns/op    1463 B/op     34 allocs/op
-       qbs:    12.91s       322643 ns/op    5843 B/op    111 allocs/op
-      xorm:    12.93s       323136 ns/op    2500 B/op     73 allocs/op
-      hood:    14.53s       363331 ns/op   14578 B/op    293 allocs/op
-
- 80000 times - Read
-       orm:    19.57s       244639 ns/op    2762 B/op     81 allocs/op
-      hood:    19.76s       246961 ns/op    4981 B/op     96 allocs/op
-       qbs:    20.44s       255498 ns/op    8609 B/op    180 allocs/op
-      xorm:    27.35s       341934 ns/op    6807 B/op    193 allocs/op
-
- 40000 times - MultiRead limit 100
-       orm:    39.32s       982898 ns/op   90386 B/op   3201 allocs/op
-       qbs:    62.58s      1564475 ns/op  221787 B/op   6151 allocs/op
-      xorm:    83.19s      2079663 ns/op  189770 B/op   6816 allocs/op
-      hood:    87.64s      2191093 ns/op  254457 B/op   9228 allocs/op
-```
-
-#### Sample 2
-
-```
- 40000 times - Insert
-       orm:    11.43s       285684 ns/op    1511 B/op     35 allocs/op
-      xorm:    12.32s       308044 ns/op    2182 B/op     53 allocs/op
-       qbs:    12.94s       323575 ns/op    5849 B/op    111 allocs/op
-      hood:    14.45s       361222 ns/op   14563 B/op    293 allocs/op
-
- 10000 times - MultiInsert 100 row
-       orm:    22.37s      2236512 ns/op   84921 B/op    853 allocs/op
-      xorm:    25.49s      2549191 ns/op  112714 B/op   1878 allocs/op
-      hood:     Not support multi insert
-       qbs:     Not support multi insert
-
- 40000 times - Update
-       orm:    12.95s       323640 ns/op    1460 B/op     34 allocs/op
-       qbs:    13.02s       325452 ns/op    5850 B/op    111 allocs/op
-      xorm:    13.13s       328245 ns/op    2503 B/op     73 allocs/op
-      hood:    14.70s       367445 ns/op   14559 B/op    293 allocs/op
-
- 80000 times - Read
-       orm:    19.36s       241961 ns/op    2744 B/op     81 allocs/op
-      hood:    19.76s       246971 ns/op    4958 B/op     96 allocs/op
-       qbs:    20.47s       255905 ns/op    8628 B/op    180 allocs/op
-      xorm:    26.38s       329728 ns/op    6820 B/op    193 allocs/op
-
- 40000 times - MultiRead limit 100
-       orm:    39.48s       987091 ns/op   90160 B/op   3200 allocs/op
-       qbs:    63.17s      1579254 ns/op  221992 B/op   6152 allocs/op
-      xorm:    83.58s      2089464 ns/op  189706 B/op   6815 allocs/op
-      hood:    91.41s      2285256 ns/op  254087 B/op   9226 allocs/op
-```
-
-#### Sample 3
-```
- 40000 times - Insert
-       orm:    11.95s       298654 ns/op    1512 B/op     35 allocs/op
-      xorm:    12.47s       311666 ns/op    2179 B/op     53 allocs/op
-       qbs:    13.49s       337224 ns/op    5849 B/op    111 allocs/op
-      hood:    15.00s       374967 ns/op   14573 B/op    293 allocs/op
-
- 10000 times - MultiInsert 100 row
-       orm:    22.95s      2294502 ns/op   84920 B/op    853 allocs/op
-      xorm:    26.01s      2600964 ns/op  112579 B/op   1877 allocs/op
-       qbs:     Not support multi insert
+       orm:    15.55s      1555473 ns/op  147150 B/op   1534 allocs/op
+       raw:    16.73s      1673108 ns/op  110803 B/op    811 allocs/op
+    gendry:    17.22s      1722363 ns/op  148934 B/op    943 allocs/op
+      gorm:     Not support multi insert
       hood:     Not support multi insert
 
  40000 times - Update
-       orm:    13.17s       329226 ns/op    1461 B/op     34 allocs/op
-       qbs:    13.27s       331845 ns/op    5847 B/op    111 allocs/op
-      xorm:    13.64s       340992 ns/op    2502 B/op     73 allocs/op
-      hood:    14.79s       369635 ns/op   14576 B/op    293 allocs/op
+       raw:    10.51s       262697 ns/op     616 B/op     14 allocs/op
+       orm:    12.80s       319930 ns/op    1929 B/op     40 allocs/op
+    gendry:    15.17s       379272 ns/op    3026 B/op     62 allocs/op
+      hood:    15.93s       398332 ns/op   13039 B/op    316 allocs/op
+      gorm:    35.66s       891479 ns/op   15646 B/op    335 allocs/op
 
  80000 times - Read
-       orm:    20.10s       251271 ns/op    2738 B/op     81 allocs/op
-      hood:    20.45s       255610 ns/op    4960 B/op     96 allocs/op
-       qbs:    21.13s       264091 ns/op    8651 B/op    180 allocs/op
-      xorm:    27.60s       345010 ns/op    6801 B/op    193 allocs/op
+       raw:     9.87s       123378 ns/op    1464 B/op     40 allocs/op
+      hood:    15.86s       198311 ns/op    4418 B/op     93 allocs/op
+       orm:    16.99s       212386 ns/op    2837 B/op    100 allocs/op
+    gendry:    17.56s       219441 ns/op    4266 B/op    100 allocs/op
+      gorm:    20.12s       251512 ns/op    6482 B/op    147 allocs/op
 
  40000 times - MultiRead limit 100
-       orm:    40.36s      1008896 ns/op   90137 B/op   3200 allocs/op
-       qbs:    64.53s      1613287 ns/op  222005 B/op   6152 allocs/op
-      xorm:    81.46s      2036502 ns/op  189573 B/op   6815 allocs/op
-      hood:    90.95s      2273773 ns/op  253770 B/op   9225 allocs/op
+       raw:    14.77s       369221 ns/op   34848 B/op   1324 allocs/op
+       orm:    26.50s       662504 ns/op   85269 B/op   4291 allocs/op
+    gendry:    32.90s       822476 ns/op  141368 B/op   3574 allocs/op
+      hood:    48.69s      1217279 ns/op  234267 B/op   9611 allocs/op
+      gorm:    50.87s      1271681 ns/op  247494 B/op   6210 allocs/op
 ```
 
 
 ### Contact
 
-Maintain by [slene](https://github.com/slene)
+Maintain by [nlimpid](https://github.com/nlimpid)
